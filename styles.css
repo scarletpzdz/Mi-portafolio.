@@ -1,0 +1,229 @@
+/* Reinicio y configuración básica */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  scroll-behavior: smooth;
+  font-family: Arial, sans-serif;
+}
+
+/* Contenedor para scroll snap */
+.container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+/* Estilos generales para todos los banners */
+.banner {
+  height: 75vh;
+  scroll-snap-align: start;
+  position: relative; /* Para posicionar elementos hijos de forma absoluta */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Evita que se salga contenido del banner */
+}
+
+/* Imagen de fondo en cualquier banner */
+.banner-img {
+  width: 150%;
+  max-height: 300vh;
+  object-fit: cover; /* Se ajusta para cubrir todo el banner */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Estilo para canvas que se superpone a la imagen */
+canvas, #contactCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Efecto de animación al activar un banner */
+.banner.active {
+  transform: scale(1.02);
+}
+
+/* Colores de fondo específicos para algunos banners */
+#banner1,
+#banner3 {
+  background-color: #1e1e2e; /* Gris oscuro */
+}
+
+/* Banner 2: Estado inicial del contenido y animación */
+#banner2 .content {
+  opacity: 0;
+  transform: translateY(50px) scale(0.95);
+  padding: 200px;
+  font-size: 30px;
+  line-height: 1.5;
+  background-color: azure;
+}
+
+#banner2.active .content {
+  animation: impressiveFadeIn 1.5s ease-out forwards;
+}
+
+@keyframes impressiveFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(20px) scale(3);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Estilos para contenido general en banners */
+.content {
+  text-align: center;
+  color: #00039c;
+  padding: 20px;
+}
+
+/* Estilos para enlaces */
+a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+/* Banner 3: Proyectos (fondo y canvas de corriente se definen en JS) */
+#currentCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Título del banner (usado en Banner 3 y en el contenedor de contenido) */
+.banner-title {
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+  font-size: 3em;
+  margin: 1px 0 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  height: 200px;
+}
+
+/* Contenedor de contenido para agrupar título y proyectos */
+.banner-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
+}
+
+/* Contenedor de proyectos: centra los recuadros horizontalmente */
+.projects-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Cada recuadro de proyecto */
+.project-card {
+  background: #2c2c3c;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 300px;
+  margin: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.project-card:hover {
+  transform: translateY(-100px);
+}
+
+.project-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.project-card a {
+  display: block;
+  font-size: 1.2em;
+  color: #3b82f6;
+  text-decoration: none;
+  margin: 10px;
+}
+
+.project-card p {
+  padding: 0 10px 10px;
+  color: #d3d3d3;
+}
+
+/* Efecto de burbuja para el cursor */
+.bubble {
+  position: absolute;
+  background-color: rgba(59, 130, 246, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: bubbleAnimation 2s ease-out forwards;
+}
+
+@keyframes bubbleAnimation {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Estilos específicos para Banner 4 (con imagen SVG) */
+#banner4 {
+  position: relative;  /* Permite posicionar elementos internos */
+  width: 100%;        /* Ancho fijo */
+  height: 85%;       /* Altura fija */
+  overflow: hidden;
+  /* Si se requiere ocultar contenido desbordante, se puede descomentar:
+   */
+}
+.footer {
+    background-color: #222; /* Color de fondo oscuro */
+    color: white; /* Texto blanco */
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+    position: fixed; /* Fijado en la parte inferior */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+  
